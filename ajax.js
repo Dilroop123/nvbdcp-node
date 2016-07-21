@@ -15,31 +15,28 @@ exports.postReq = function(url,data,auth,callback) {
             "Content-Type": "application/json",
         }
     }, function (error, response, body) {
-        console.log(body);
-
-        if (error == null) {
-            callback(body);
-        } else {
-            callback(body);
-        }
+        callback(error,response,body);
     });
 }
 
-    exports.getReq = function(url,auth,callback){
+    exports.getReq = function(url,auth,callback) {
         request({
             url: url,
             method: "GET",
-            headers : {
-                "Authorization" : auth
+            headers: {
+                "Authorization": auth
             }
-        }, function (error, response, body){
-            body = JSON.parse(body);
+        }, function (error, response, body) {
+                callback(error,response,body);
 
-            if (error == null){
-                callback(body);
-            }else{
-                callback(body);
-            }
         });
+    }
+        exports.getReqWithoutAuth = function(url,callback){
+            request({
+                url: url,
+                method: "GET"
+            }, function (error, response, body){
+                callback(error,response,body);
+            });
 
     }

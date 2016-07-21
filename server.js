@@ -51,9 +51,15 @@ global.__logger  = log4js.getLogger('nvbdcp');
 
 // Open API for receieving POst req
 app.post('/pushSMS', function(req, res){
-    __logger.info("SMS Arrived ["+req.body.message+"]");
 
-    Engine.processData(req.body);
+    const logID = "["+req.body.id + "#" +req.body.date + "#" + req.body.number + "] -> ";
+    __logger.info(logID+"SMS Arrived "+"["+req.body.message+"]");
+
+    try{
+        Engine.processData(logID,req.body);
+    }catch(error){
+        __logger.info(logID+error);
+    }
 
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end('ok');
