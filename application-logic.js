@@ -77,9 +77,6 @@ function Engine(){
             result.field7 = message.trim();
 
             return result;
-        }else{
-
-            return CONSTANTS.INVALID_FORMAT;
         }
 
         return CONSTANTS.INVALID_FORMAT;
@@ -111,7 +108,7 @@ function Engine(){
                 sendConfirmationMessage(CONSTANTS.PERFECT_MESSAGE,message,ou,msgDate);
                 __logger.info(logID+"[PERFECT_MESSAGE+]"+body.status);
             }else{
-                __logger.info(logID+"[PERFECT_MESSAGE-]"+error.message);
+                __logger.error(logID+"[PERFECT_MESSAGE-]"+error.message);
             }
         }
 
@@ -140,7 +137,7 @@ function Engine(){
                 __logger.info(logID+"[OrgUnit+]"+response.statusMessage + " Length:"+body.organisationUnits.length);
 
             }else{
-                __logger.info(logID+"[OrgUnit-]"+error.message);
+                __logger.error(logID+"[OrgUnit-]"+error.message);
             }
         }
 
@@ -176,7 +173,7 @@ function Engine(){
         }
 
         pushEvent(logID,event);
-        sendConfirmationMessage(logID,type,data,orgUnit,msgDate);
+        sendConfirmationMessage(logID,type,data,"english",msgDate);
 
         function pushEvent(logID,event){
             var url = CONSTANTS.DHIS_URL_BASE+"/api/events?";
@@ -188,7 +185,7 @@ function Engine(){
                     __logger.info(logID +"["+type+"-"+formatValid+"]"+"[Event Push+]"+body.message);
 
                 }else{
-                    __logger.info(logID+"["+type+"-"+formatValid+"]"+"[Event Push-]"+error.message);
+                    __logger.error(logID+"["+type+"-"+formatValid+"]"+"[Event Push-]"+error.message);
                 }
             }
         }
@@ -206,7 +203,7 @@ function Engine(){
                 body = JSON.parse(body);
                 __logger.info(logID+"[ConfirmationSMS+]"+body.status);
             }else{
-                __logger.info(logID+"[ConfirmationSMS-]"+error.message);
+                __logger.error(logID+"[ConfirmationSMS-]"+error.message);
             }
         }
 

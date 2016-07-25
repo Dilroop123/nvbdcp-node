@@ -2,8 +2,7 @@
  * Created by harsh on 16/7/16.
  */
 
-
- exports.DHIS_URL_BASE = "http://localhost:8080/dhis23";
+ exports.DHIS_URL_BASE = "http://127.0.0.1:8080/dhis23";
 
  exports.sendSMSURL = "http://localhost:8001/sendSMS?";
 

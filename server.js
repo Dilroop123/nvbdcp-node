@@ -32,21 +32,21 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 
 /** Set Up Logging
- */ var log4js = require("log4js");
-log4js.configure({
-    appenders: [
-        {
-            type: "console"
-        },
-        {
-            type: "file",
-            filename: "./logs/server.log",
-            category: "nvbdcp"
-        }
+ */ var winston = require('winston');
+global.__logger = new (winston.Logger)({
+    level : 'silly',
+    transports: [
+        new (winston.transports.Console)({
+            colorize: true,
+            timestamp: true
+        }),
+        new (winston.transports.File)({
+            filename: './logs/server.log',
+            timestamp: true
+        })
     ]
 });
-global.__logger  = log4js.getLogger('nvbdcp');
-    /**
+/**
      */
 
 // Open API for receieving POst req
@@ -58,7 +58,7 @@ app.post('/pushSMS', function(req, res){
     try{
         Engine.processData(logID,req.body);
     }catch(error){
-        __logger.info(logID+error);
+        __logger.fatal(logID+error);
     }
 
     res.writeHead(200, {'Content-Type': 'text/html'});

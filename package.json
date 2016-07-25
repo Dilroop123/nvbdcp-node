@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/hispindia/nvbdcp-node.git"
   },
-  "author": "harsh",
+  "author": "harsh atal",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/hispindia/nvbdcp-node/issues"
@@ -22,6 +22,7 @@
     "express" : "4.14.0",
     "request": "2.72.0",
     "q" : "1.4.1",
-    "moment" : "2.13.0"
+    "moment" : "2.13.0",
+    "body-parser" : "1.15.2"
   }
 }
