@@ -6,6 +6,13 @@
 
  exports.sendSMSURL = "http://localhost:8001/sendSMS?";
 
+exports.TEXTLOCAL_USERNAME = "harsh.atal@gmail.com";
+exports.TEXTLOCAL_HASH = "Harsh";
+exports.TEXTLOCAL_SENDER = "TXTLCL";
+
+
+
+
  exports.USER_NOT_FOUND = "User Not Found";
  exports.username = "admin";
  exports.password = "district";

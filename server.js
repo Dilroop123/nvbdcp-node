@@ -47,7 +47,7 @@ global.__logger = new (winston.Logger)({
     ]
 });
 /**
-     */
+*/
 
 // Open API for receieving POst req
 app.post('/pushSMS', function(req, res){

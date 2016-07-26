@@ -102,7 +102,6 @@ function Engine(){
         ajax.postReq(CONSTANTS.DHIS_URL_BASE+"/api/dataValueSets?",dv,CONSTANTS.auth,callback);
 
         function callback(error,response,body){
-
             if (error == null){
                 //send confirmation
                 sendConfirmationMessage(CONSTANTS.PERFECT_MESSAGE,message,ou,msgDate);
@@ -135,7 +134,6 @@ function Engine(){
                 body = JSON.parse(body);
                 def.resolve(body.organisationUnits);
                 __logger.info(logID+"[OrgUnit+]"+response.statusMessage + " Length:"+body.organisationUnits.length);
-
             }else{
                 __logger.error(logID+"[OrgUnit-]"+error.message);
             }
@@ -195,7 +193,9 @@ function Engine(){
 
         var confirmationMessage = buildMsg(type,data,language,msgDate);
 
-        var url = CONSTANTS.sendSMSURL+"message="+confirmationMessage+"&sender="+data.sender;
+        var url = buildURL();
+        url = url+"&message="+confirmationMessage+"&sender="+data.sender;
+
         ajax.getReqWithoutAuth(url,callback);
 
         function callback(error,response,body){
@@ -221,7 +221,7 @@ function Engine(){
                                      data["field4"]+","+
                                      data["field5"]+","+
                                      data["field6"]+"),"+translation["sideEffect"]+"("+
-                                     data["field7"]+") "+msgDate.format("DD-MM-YYYY");
+                                     data["field7"]+") "+msgDate.format("DD/MM/YYYY");
                     break;
 
                 case CONSTANTS.INVALID_FORMAT :
@@ -234,6 +234,13 @@ function Engine(){
             }
 
             return msg;
+        }
+
+        function buildURL(){
+            var url = CONSTANTS.sendSMSURL + "?username="+CONSTANTS.TEXTLOCAL_USERNAME+
+                        "&hash="+CONSTANTS.TEXTLOCAL_HASH+
+                        "&sender="+CONSTANTS.TEXTLOCAL_SENDER;
+        return url;
         }
     }
 
