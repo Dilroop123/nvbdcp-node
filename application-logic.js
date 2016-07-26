@@ -10,8 +10,8 @@ function Engine(){
     var ajax = require("./ajax");
 
     this.processData = function(logID,data){
-        getOrgUnitByPhone(logID,data.number).then(function(orgUnits){
-            var message = messageParser(data.message);
+        getOrgUnitByPhone(logID,data.sender).then(function(orgUnits){
+            var message = messageParser(data.content);
             if (orgUnits.length>0){
               //  __logger.info(logID + "Org Unit Found");
                 if (message == CONSTANTS.INVALID_FORMAT){
@@ -85,7 +85,7 @@ function Engine(){
     function prepareDVSAndPush(logID,message,ou,data){
 
         var orgUnit = ou.id;
-        var msgDate = moment(data.date, "YYYY-MM-DD HH:mm:ss");
+        var msgDate = moment(data.rcvd, "YYYY-MM-DD HH:mm:ss");
         var period = msgDate.format("YYYYMMDD");
         var storedBy = CONSTANTS.username;
 
@@ -146,7 +146,7 @@ function Engine(){
 
         var type = undefined;
         var event = {};
-        var msgDate = moment(data.date, "YYYY-MM-DD HH:mm:ss");
+        var msgDate = moment(data.rcvd, "YYYY-MM-DD HH:mm:ss");
         event.eventDate =  msgDate;
         event.dataValues = [];
         event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_MESSAGE,     value:data.message});

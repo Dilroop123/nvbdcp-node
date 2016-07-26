@@ -2,9 +2,9 @@
  * Created by harsh on 16/7/16.
  */
 
- exports.DHIS_URL_BASE = "http://127.0.0.1:8080/dhis23";
+ exports.DHIS_URL_BASE = "http://ntdindia.org/lf";
 
- exports.sendSMSURL = "http://localhost:8001/sendSMS?";
+ exports.sendSMSURL = "http://api.textlocal.in/send?";
 
 exports.TEXTLOCAL_USERNAME = "harsh.atal@gmail.com";
 exports.TEXTLOCAL_HASH = "Harsh";

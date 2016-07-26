@@ -52,8 +52,8 @@ global.__logger = new (winston.Logger)({
 // Open API for receieving POst req
 app.post('/pushSMS', function(req, res){
 
-    const logID = "["+req.body.id + "#" +req.body.date + "#" + req.body.number + "] -> ";
-    __logger.info(logID+"SMS Arrived "+"["+req.body.message+"]");
+    const logID = "["+req.body.msgId + "#" +req.body.rcvd + "#" + req.body.sender + "] -> ";
+    __logger.info(logID+"SMS Arrived "+"["+req.body.content+"]");
 
     try{
         Engine.processData(logID,req.body);
