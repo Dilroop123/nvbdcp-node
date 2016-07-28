@@ -4,7 +4,7 @@
 
  exports.DHIS_URL_BASE = "http://ntdindia.org/lf";
 
- exports.sendSMSURL = "http://api.textlocal.in/send?";
+ exports.sendSMSURL = "http://api.textlocal.in/send";
 
 exports.TEXTLOCAL_USERNAME = "harsh.atal@gmail.com";
 exports.TEXTLOCAL_HASH = "Harsh";

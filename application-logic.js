@@ -104,7 +104,7 @@ function Engine(){
         function callback(error,response,body){
             if (error == null){
                 //send confirmation
-                sendConfirmationMessage(CONSTANTS.PERFECT_MESSAGE,message,ou,msgDate);
+                sendConfirmationMessage(logID,CONSTANTS.PERFECT_MESSAGE,message,"english",msgDate,data.sender);
                 __logger.info(logID+"[PERFECT_MESSAGE+]"+body.status);
             }else{
                 __logger.error(logID+"[PERFECT_MESSAGE-]"+error.message);
@@ -171,7 +171,7 @@ function Engine(){
         }
 
         pushEvent(logID,event);
-        sendConfirmationMessage(logID,type,data,"english",msgDate);
+        sendConfirmationMessage(logID,type,data,"english",msgDate,data.sender);
 
         function pushEvent(logID,event){
             var url = CONSTANTS.DHIS_URL_BASE+"/api/events?";
@@ -189,18 +189,20 @@ function Engine(){
         }
     }
 
-    function sendConfirmationMessage(logID,type,data,language,msgDate){
+    function sendConfirmationMessage(logID,type,data,language,msgDate,phone){
 
         var confirmationMessage = buildMsg(type,data,language,msgDate);
-
+__logger.info(type+","+JSON.stringify(data) + phone);
         var url = buildURL();
-        url = url+"&message="+confirmationMessage+"&sender="+data.sender;
+        url = url+"&message="+confirmationMessage+"&numbers="+phone;
 
+__logger.info(url);
         ajax.getReqWithoutAuth(url,callback);
 
         function callback(error,response,body){
             if (error == null){
                 body = JSON.parse(body);
+__logger.info(JSON.stringify(body));
                 __logger.info(logID+"[ConfirmationSMS+]"+body.status);
             }else{
                 __logger.error(logID+"[ConfirmationSMS-]"+error.message);
@@ -213,15 +215,18 @@ function Engine(){
             var msg = "";
             switch (type){
                 case CONSTANTS.PERFECT_MESSAGE :
+__logger.info(JSON.stringify(translation));
                     msg = translation[CONSTANTS.PERFECT_MESSAGE];
-                    msg = msg + translation["male"]+
+                    __logger.info(msg);
+				msg = msg + " "+translation["male"]+"("+
                                      data["field1"]+","+
                                      data["field2"]+","+
                                      data["field3"]+"),"+translation["female"]+"("+
                                      data["field4"]+","+
                                      data["field5"]+","+
                                      data["field6"]+"),"+translation["sideEffect"]+"("+
-                                     data["field7"]+") "+msgDate.format("DD/MM/YYYY");
+                                     data["field7"]+") "+msgDate.format("DD-MM-YYYY");
+__logger.info(msg)
                     break;
 
                 case CONSTANTS.INVALID_FORMAT :
