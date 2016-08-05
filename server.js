@@ -49,6 +49,8 @@ global.__logger = new (winston.Logger)({
 /**
 */
 
+var ajax = require("./ajax");
+
 // Open API for receieving POst req
 app.post('/pushSMS', function(req, res){
 
@@ -57,6 +59,8 @@ app.post('/pushSMS', function(req, res){
 
     try{
         Engine.processData(logID,req.body);
+        ajax.forwardMessage(req.body);
+
     }catch(error){
         __logger.fatal(logID+error);
     }

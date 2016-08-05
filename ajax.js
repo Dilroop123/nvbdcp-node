@@ -40,3 +40,24 @@ exports.postReq = function(url,data,auth,callback) {
             });
 
     }
+
+
+exports.forwardMessage = function(body){
+    var url = "http://180.151.233.61:8000/pushSMS";
+
+    request({
+        url: url,
+        method: "POST",
+        json: true,   // <--Very important!!!
+        body: body,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }, function (error, response, body) {
+        if (error==null){
+            console.log(""+body)
+        }else{
+            console.log(error.message);
+        }
+    });
+}
