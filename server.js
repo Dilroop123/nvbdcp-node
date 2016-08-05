@@ -59,7 +59,7 @@ app.post('/pushSMS', function(req, res){
 
     try{
         Engine.processData(logID,req.body);
-       // ajax.forwardMessage(req.body);
+        ajax.forwardMessage(req.body);
 
     }catch(error){
         __logger.fatal(logID+error);
