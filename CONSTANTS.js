@@ -2,7 +2,7 @@
  * Created by harsh on 16/7/16.
  */
 
-exports.DHIS_URL_BASE = "http://http://ntdindia.org/lf";
+exports.DHIS_URL_BASE = "http://ntdindia.org/lf";
 
 exports.sendSMSURL = "http://api.textlocal.in/send";
 
