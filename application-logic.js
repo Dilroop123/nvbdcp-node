@@ -98,6 +98,9 @@ function Engine(){
         dv.dataValues.push(makeDVJson(CONSTANTS.field5.de,CONSTANTS.field5.coc,period,orgUnit,message["field5"],storedBy));
         dv.dataValues.push(makeDVJson(CONSTANTS.field6.de,CONSTANTS.field6.coc,period,orgUnit,message["field6"],storedBy));
         dv.dataValues.push(makeDVJson(CONSTANTS.field7.de,CONSTANTS.field7.coc,period,orgUnit,message["field7"],storedBy));
+        dv.dataValues.push(makeDVJson(CONSTANTS.field8.de,CONSTANTS.field8.coc,period,orgUnit,data.msgId,storedBy));
+        dv.dataValues.push(makeDVJson(CONSTANTS.field9.de,CONSTANTS.field9.coc,period,orgUnit,data.content,storedBy));
+
 
         ajax.postReq(CONSTANTS.DHIS_URL_BASE+"/api/dataValueSets?",dv,CONSTANTS.auth,callback);
 
@@ -149,14 +152,14 @@ function Engine(){
         var msgDate = moment(data.rcvd, "YYYY-MM-DD HH:mm:ss");
         event.eventDate =  msgDate;
         event.dataValues = [];
-        event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_MESSAGE,     value:data.message});
-        event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_MESSAGE_ID,  value:data.id});
-        event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_TIMESTAMP,   value:data.date});
+        event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_MESSAGE,     value:data.content});
+        event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_MESSAGE_ID,  value:data.msgId});
+        event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_TIMESTAMP,   value:data.rcvd});
 
         if (!orgUnit){
             type = CONSTANTS.INVALID_PHONE;
             event.program = CONSTANTS.PROGRAM_PHONE_NOT_FOUND;
-            event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_PHONE,value:data.number});
+            event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_PHONE,value:data.sender});
             event.orgUnit = CONSTANTS.ORGUNIT_ROOT_UID;
 
             if (formatValid){
@@ -172,6 +175,7 @@ function Engine(){
 
         pushEvent(logID,event);
         sendConfirmationMessage(logID,type,data,"english",msgDate,data.sender);
+
 
         function pushEvent(logID,event){
             var url = CONSTANTS.DHIS_URL_BASE+"/api/events?";
@@ -191,18 +195,21 @@ function Engine(){
 
     function sendConfirmationMessage(logID,type,data,language,msgDate,phone){
 
-        var confirmationMessage = buildMsg(type,data,language,msgDate);
-__logger.info(type+","+JSON.stringify(data) + phone);
+        //if (data.sender!="919654232779") {
+        //return
+        //}
+            var confirmationMessage = buildMsg(type,data,language,msgDate);
+//__logger.info(type+","+JSON.stringify(data) + phone);
         var url = buildURL();
         url = url+"&message="+confirmationMessage+"&numbers="+phone;
 
-__logger.info(url);
+//__logger.info(url);
         ajax.getReqWithoutAuth(url,callback);
 
         function callback(error,response,body){
             if (error == null){
                 body = JSON.parse(body);
-__logger.info(JSON.stringify(body));
+//__logger.info(JSON.stringify(body));
                 __logger.info(logID+"[ConfirmationSMS+]"+body.status);
             }else{
                 __logger.error(logID+"[ConfirmationSMS-]"+error.message);
@@ -215,7 +222,7 @@ __logger.info(JSON.stringify(body));
             var msg = "";
             switch (type){
                 case CONSTANTS.PERFECT_MESSAGE :
-__logger.info(JSON.stringify(translation));
+//__logger.info(JSON.stringify(translation));
                     msg = translation[CONSTANTS.PERFECT_MESSAGE];
                     __logger.info(msg);
 				msg = msg + " "+translation["male"]+"("+
@@ -226,7 +233,7 @@ __logger.info(JSON.stringify(translation));
                                      data["field5"]+","+
                                      data["field6"]+"),"+translation["sideEffect"]+"("+
                                      data["field7"]+") "+msgDate.format("DD-MM-YYYY");
-__logger.info(msg)
+//__logger.info(msg)
                     break;
 
                 case CONSTANTS.INVALID_FORMAT :

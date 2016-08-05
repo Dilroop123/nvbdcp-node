@@ -2,9 +2,9 @@
  * Created by harsh on 16/7/16.
  */
 
- exports.DHIS_URL_BASE = "http://ntdindia.org/lf";
+exports.DHIS_URL_BASE = "http://localhost:8080/dhis23";
 
- exports.sendSMSURL = "http://api.textlocal.in/send";
+exports.sendSMSURL = "http://api.textlocal.in/send";
 
 exports.TEXTLOCAL_USERNAME = "harsh.atal@gmail.com";
 exports.TEXTLOCAL_HASH = "Harsh";
@@ -13,51 +13,57 @@ exports.TEXTLOCAL_SENDER = "TXTLCL";
 
 
 
- exports.USER_NOT_FOUND = "User Not Found";
- exports.username = "admin";
- exports.password = "district";
- exports.auth = "Basic " + new Buffer(exports.username + ":" + exports.password).toString("base64");
+exports.USER_NOT_FOUND = "User Not Found";
+exports.username = "admin";
+exports.password = "district";
+exports.auth = "Basic " + new Buffer(exports.username + ":" + exports.password).toString("base64");
 
- exports.INVALID_FORMAT = "INVALID_FORMAT";
- exports.INVALID_PHONE = "INVALID_PHONE";
- exports.PERFECT_MESSAGE = "PERFECT_MESSAGE";
-
-
-exports.PROGRAM_PHONE_NOT_FOUND = "nhuGvx4BrYW";
-exports.PROGRAM_INVALID_FORMAT = "wtCnhB0Hwwf";
-exports.EVENT_DE_TIMESTAMP = "IduKf7VQhsw";
-exports.EVENT_DE_MESSAGE = "JsMkULAV88V";
-exports.EVENT_DE_MESSAGE_ID = "Jft8sfZbdCi";
-exports.EVENT_DE_PHONE = "JTSiyE9NiNj";
-exports.EVENT_DE_IS_FORMAT_VALID = "uVSwrDcq7Cp";
-exports.ORGUNIT_ROOT_UID = "IFOBH4e3JuN";
+exports.INVALID_FORMAT = "INVALID_FORMAT";
+exports.INVALID_PHONE = "INVALID_PHONE";
+exports.PERFECT_MESSAGE = "PERFECT_MESSAGE";
 
 
+exports.PROGRAM_PHONE_NOT_FOUND = "ivNRN35EMWW";
+exports.PROGRAM_INVALID_FORMAT = "rdGO9pcR6va";
+exports.EVENT_DE_TIMESTAMP = "Uf4qpY5RAAl";
+exports.EVENT_DE_MESSAGE = "S5kYviYPt6t";
+exports.EVENT_DE_MESSAGE_ID = "NeVR3qMksxK";
+exports.EVENT_DE_PHONE = "EnCZWrS6PP3";
+exports.EVENT_DE_IS_FORMAT_VALID = "LtJaSGAvngC";
+exports.ORGUNIT_ROOT_UID = "WBFNadSm5EQ";
 
 
 
- exports.DE_Drug_Administered = "Tb1ghTossEY";
+exports.DE_Drug_Administered = "Xyv3GnPTtZI"
+exports.DE_MessageID = "MtIn87iDOh3";
+exports.DE_Message = "bfkx6RMLAzI";
 
- exports.COC_PreSac_TwoToFour_M = "mjawpWOwuwe";
- exports.COC_Sac_FiveToFifteen_M = "HVv1j9toqK3";
- exports.COC_Adults_FifteenPlus_M = "uJSABYiu0kO";
 
- exports.COC_PreSac_TwoToFour_F = "XPTCPEKf9ou";
- exports.COC_Sac_FiveToFifteen_F = "ofZzY3qlkZd";
- exports.COC_Adults_FifteenPlus_F = "vrpw537qg8F";
+exports.COC_PreSac_TwoToFive_M = "UtQUjXcW3dB";
+exports.COC_Sac_FiveToForteen_M = "Ci5K5kLYVws";
+exports.COC_Adults_SixteenPlus_M = "hHuC7esid2N";
 
- exports.DE_SideEffect = "EGd3y9uIM8P";
- exports.COC_DEFAULT = "HllvX50cXC0";
+exports.COC_PreSac_TwoToFive_F = "c9Ks9MYOiI2";
+exports.COC_Sac_FiveToForteen_F = "PIfCZNpJ3g0";
+exports.COC_Adults_SixteenPlus_F = "kI9cXwlPBmP";
 
- exports.field1 = {de: exports.DE_Drug_Administered, coc: exports.COC_PreSac_TwoToFour_M}
- exports.field2 = {de: exports.DE_Drug_Administered, coc: exports.COC_Sac_FiveToFifteen_M}
- exports.field3 = {de: exports.DE_Drug_Administered, coc: exports.COC_Adults_FifteenPlus_M}
+exports.DE_SideEffect = "BQMbKHGGXbV";
+exports.COC_DEFAULT = "HllvX50cXC0";
 
- exports.field4 = {de: exports.DE_Drug_Administered, coc: exports.COC_PreSac_TwoToFour_F}
- exports.field5 = {de: exports.DE_Drug_Administered, coc: exports.COC_Sac_FiveToFifteen_F}
- exports.field6 = {de: exports.DE_Drug_Administered, coc: exports.COC_Adults_FifteenPlus_F}
+exports.field1 = {de: exports.DE_Drug_Administered, coc: exports.COC_PreSac_TwoToFive_M}
+exports.field2 = {de: exports.DE_Drug_Administered, coc: exports.COC_Sac_FiveToForteen_M}
+exports.field3 = {de: exports.DE_Drug_Administered, coc: exports.COC_Adults_SixteenPlus_M}
 
- exports.field7 = {de: exports.DE_SideEffect, coc: exports.COC_DEFAULT}
+exports.field4 = {de: exports.DE_Drug_Administered, coc: exports.COC_PreSac_TwoToFive_F}
+exports.field5 = {de: exports.DE_Drug_Administered, coc: exports.COC_Sac_FiveToForteen_F}
+exports.field6 = {de: exports.DE_Drug_Administered, coc: exports.COC_Adults_SixteenPlus_F}
+
+exports.field7 = {de: exports.DE_SideEffect, coc: exports.COC_DEFAULT}
+
+exports.field8 = {de: exports.DE_MessageID, coc: exports.COC_DEFAULT}
+exports.field9 = {de: exports.DE_Message, coc: exports.COC_DEFAULT}
+
+
 
 
 exports.languageMap = {
@@ -73,7 +79,9 @@ exports.languageMap.english["female"] = "Female";
 exports.languageMap.english["sideEffect"] = "SE";
 
 
-
-
-
-
+exports.languageMap.hindi[exports.INVALID_FORMAT] = "अवैध प्रारूप। सही प्रारूप 30.40.20 30.50.60 10";
+exports.languageMap.hindi[exports.INVALID_PHONE] = "आपका नंबर पंजीकृत नहीं है। ब्लॉक अधिकारी से संपर्क करें।";
+exports.languageMap.hindi[exports.PERFECT_MESSAGE] = "धन्यवाद! आप ने भेजा";
+exports.languageMap.hindi["male"] = "Male";
+exports.languageMap.hindi["female"] = "Female";
+exports.languageMap.hindi["sideEffect"] = "SE";
