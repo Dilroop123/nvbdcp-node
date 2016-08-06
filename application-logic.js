@@ -15,7 +15,7 @@ function Engine(){
             var message = messageParser(data.content);
             if (orgUnits.length>0){
                 var language = extractLanguage(orgUnits[0])
-                __logger.info("language="+language);
+                __logger.debug("language="+language);
 
                 //  __logger.info(logID + "Org Unit Found");
                 if (message == CONSTANTS.INVALID_FORMAT){
@@ -191,7 +191,7 @@ function Engine(){
         var type = undefined;
         var event = {};
         var msgDate = moment();
-        event.eventDate =  msgDate; __logger.debug("EventDate="+msgDate);
+        event.eventDate =  msgDate; __logger.debug("EventDate="+msgDate.format("YYYY-MM-DD HH:mm:ss Z"));
         event.dataValues = [];
         event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_MESSAGE,     value:data.content});
         event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_MESSAGE_ID,  value:data.msgId});
@@ -281,7 +281,7 @@ function Engine(){
         function callback(error,response,body){
             if (error == null){
                 body = JSON.parse(body);
-__logger.info(JSON.stringify(body));
+__logger.debug(JSON.stringify(body));
                 __logger.info(logID+"[ConfirmationSMS+]"+body.status);
             }else{
                 __logger.error(logID+"[ConfirmationSMS-]"+error.message);

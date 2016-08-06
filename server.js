@@ -56,11 +56,11 @@ var moment = require("moment");
 app.post('/pushSMS', function(req, res){
 
 
-    const logID = "["+req.body.msgId + "#" +moment.format("YYYY-MM-DD HH:mm:ss Z")+ "#" + req.body.sender + "] -> ";
-    __logger.info(logID+"SMS Arrived "+"["+req.body.content+"] rcvd["+req.body.rcvd+"]");
+    const logID = "["+req.body.msgId + "#" +moment().format("YYYY-MM-DD HH:mm:ss Z")+ "#" + req.body.sender + "] -> ";
+    __logger.info(logID+"====SMS Arrived==== "+"["+req.body.content+"] rcvd["+req.body.rcvd+"]");
 
     try{
-        if (req.body.sender != "919654232779")
+        if (req.body.sender == "919654232779")
         {
             ajax.forwardMessage(req.body);
         }else{
