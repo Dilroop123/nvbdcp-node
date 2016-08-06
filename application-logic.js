@@ -255,7 +255,7 @@ function Engine(){
     }
     function sendConfirmationMessage(logID,type,data,language,msgDate,phone){
 
-        if (type == CONSTANTS.PERFECT_MESSAGE){
+        if (type == CONSTANTS.PERFECT_MESSAGE && language != "English"){
 
             var message =  data["field1"]+","+
                             data["field2"]+","+
@@ -326,25 +326,25 @@ function Engine(){
             }
             var msg = "";
             switch (type){
-//                case CONSTANTS.PERFECT_MESSAGE :
-////__logger.info(JSON.stringify(translation));
-//                    msg = translation[CONSTANTS.PERFECT_MESSAGE];
-//                    __logger.info(msg);
-//				msg = msg + " "+translation["male"]+"("+
-//                                     data["field1"]+","+
-//                                     data["field2"]+","+
-//                                     data["field3"]+"),"+translation["female"]+"("+
-//                                     data["field4"]+","+
-//                                     data["field5"]+","+
-//                                     data["field6"]+"),"+translation["sideEffect"]+"("+
-//                                     data["field7"]+") ";
-//
-//                                     if (language=="English" || language == "Hindi"){
-//                                        msg =  msg+msgDate.format("DD-MM-YYYY");
-//                                     }else{
-//                                        msg = msg + translation["sent"]+msgDate.format("DD-MM-YYYY");
-//                                     }
-//                    break;
+                case CONSTANTS.PERFECT_MESSAGE :
+//__logger.info(JSON.stringify(translation));
+                    msg = translation[CONSTANTS.PERFECT_MESSAGE];
+                    __logger.info(msg);
+				msg = msg + " "+translation["male"]+"("+
+                                     data["field1"]+","+
+                                     data["field2"]+","+
+                                     data["field3"]+"),"+translation["female"]+"("+
+                                     data["field4"]+","+
+                                     data["field5"]+","+
+                                     data["field6"]+"),"+translation["sideEffect"]+"("+
+                                     data["field7"]+") ";
+
+                                     if (language=="English" || language == "Hindi"){
+                                        msg =  msg+msgDate.format("DD-MM-YYYY");
+                                     }else{
+                                        msg = msg + translation["sent"]+msgDate.format("DD-MM-YYYY");
+                                     }
+                    break;
 
                 case CONSTANTS.INVALID_FORMAT :
                     msg = translation[CONSTANTS.INVALID_FORMAT];
