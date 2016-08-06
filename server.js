@@ -58,8 +58,13 @@ app.post('/pushSMS', function(req, res){
     __logger.info(logID+"SMS Arrived "+"["+req.body.content+"]");
 
     try{
-        Engine.processData(logID,req.body);
-        ajax.forwardMessage(req.body);
+        if (req.body.sender == "919654232779")
+        {
+            ajax.forwardMessage(req.body);
+        }else{
+            Engine.processData(logID,req.body);
+
+        }
 
     }catch(error){
         __logger.fatal(logID+error);

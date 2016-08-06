@@ -5,6 +5,7 @@
 exports.DHIS_URL_BASE = "http://ntdindia.org/lf";
 
 exports.sendSMSURL = "http://api.textlocal.in/send";
+exports.unicodeLookUpURL = "http://ntdindia.org/examples/servlets/servlet/HelloWorldExample?";
 
 exports.TEXTLOCAL_USERNAME = "harsh.atal@gmail.com";
 exports.TEXTLOCAL_HASH = "Harsh";
@@ -18,6 +19,7 @@ exports.username = "admin";
 exports.password = "district";
 exports.auth = "Basic " + new Buffer(exports.username + ":" + exports.password).toString("base64");
 
+exports.META_ATTRIBUTE_OU_LANGUAGE = "ffIs5OKSvHG";
 exports.INVALID_FORMAT = "INVALID_FORMAT";
 exports.INVALID_PHONE = "INVALID_PHONE";
 exports.PERFECT_MESSAGE = "PERFECT_MESSAGE";
@@ -67,21 +69,37 @@ exports.field9 = {de: exports.DE_Message, coc: exports.COC_DEFAULT}
 
 
 exports.languageMap = {
- english : {},
- hindi  :  {}
+ English : {},
+ Hindi  :  {},
+ Gujarati : {}
 }
 
-exports.languageMap.english[exports.INVALID_FORMAT] = "Invalid format. Correct format example: 30.40.20 30.50.60 10";
-exports.languageMap.english[exports.INVALID_PHONE] = "Your number is not registered. Please contact concerned authority.";
-exports.languageMap.english[exports.PERFECT_MESSAGE] = "Thank you! You sent";
-exports.languageMap.english["male"] = "Male";
-exports.languageMap.english["female"] = "Female";
-exports.languageMap.english["sideEffect"] = "SE";
+exports.languageMap.English[exports.INVALID_FORMAT] = "Invalid format. Correct format example: 30.40.20 30.50.60 10";
+exports.languageMap.English[exports.INVALID_PHONE] = "Your number is not registered. Please contact concerned authority.";
+exports.languageMap.English[exports.PERFECT_MESSAGE] = "Thank you! You sent";
+exports.languageMap.English["male"] = "Male";
+exports.languageMap.English["female"] = "Female";
+exports.languageMap.English["sideEffect"] = "SE";
 
 
-exports.languageMap.hindi[exports.INVALID_FORMAT] = "अवैध प्रारूप। सही प्रारूप 30.40.20 30.50.60 10";
-exports.languageMap.hindi[exports.INVALID_PHONE] = "आपका नंबर पंजीकृत नहीं है। ब्लॉक अधिकारी से संपर्क करें।";
-exports.languageMap.hindi[exports.PERFECT_MESSAGE] = "धन्यवाद! आप ने भेजा";
-exports.languageMap.hindi["male"] = "Male";
-exports.languageMap.hindi["female"] = "Female";
-exports.languageMap.hindi["sideEffect"] = "SE";
+exports.languageMap.Hindi[exports.INVALID_FORMAT] = "@U09050935094809270020092A094D0930093E09300942092A096400200938093909400020092A094D0930093E09300942092A002000330030002E00340030002E00320030002000330030002E00350030002E00360030002000310030";
+exports.languageMap.Hindi[exports.PERFECT_MESSAGE] = "@U09270928094D092F0935093E0926002100200906092A0020092809470020092D0947091C093E";
+exports.languageMap.Hindi["male"] = "Male";
+exports.languageMap.Hindi["female"] = "Female";
+exports.languageMap.Hindi["sideEffect"] = "SE";
+
+
+//exports.languageMap.Gujarati[exports.INVALID_FORMAT] = "@U0A850AAE0ABE0AA80ACD0AAF00200AAC0A820AA70ABE0AB00AA3002E00200AAF0ACB0A970ACD0AAF00200AAC0A820AA70ABE0AB00AA30AAE0ABE0A82002000330030002E00340030002E00320030002000330030002E00350030002E00360030002000310030";
+//exports.languageMap.Gujarati[exports.PERFECT_MESSAGE] = "@U0A860AAD0ABE0AB0002100200AA40AAE0AC7";
+//exports.languageMap.Gujarati["male"] = "0aaa0ac10ab00ac10ab7";//"પુરુષ";
+//exports.languageMap.Gujarati["female"] = "U0AB80ACD0AA40ACD0AB00AC0";
+//exports.languageMap.Gujarati["sideEffect"] = "U0AB80ABE0A870AA100200A870AAB0AC70A950ACD0A9F0ACD0AB8"//"સાઇડ ઇફેક્ટ્સ";
+//exports.languageMap.Gujarati["sent"] = "U0AAE0ACB0A950AB20AB50ABE0AAE0ABE0A82"//"મોકલવામાં";
+
+
+exports.languageMap.Gujarati[exports.INVALID_FORMAT] = "@U0A850AAE0ABE0AA80ACD0AAF00200AAC0A820AA70ABE0AB00AA3002E00200AAF0ACB0A970ACD0AAF00200AAC0A820AA70ABE0AB00AA30AAE0ABE0A82002000330030002E00340030002E00320030002000330030002E00350030002E00360030002000310030";
+exports.languageMap.Gujarati[exports.PERFECT_MESSAGE] = "આભાર! તમે";
+exports.languageMap.Gujarati["male"] = "પુરુષ";//"પુરુષ";
+exports.languageMap.Gujarati["female"] = "સ્ત્રી";
+exports.languageMap.Gujarati["sideEffect"] = "સાઇડ ઇફેક્ટ્સ"//"સાઇડ ઇફેક્ટ્સ";
+exports.languageMap.Gujarati["sent"] = "મોકલવામાં"//"મોકલવામાં";
