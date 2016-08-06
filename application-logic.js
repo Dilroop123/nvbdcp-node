@@ -9,6 +9,7 @@ function Engine(){
     var moment = require("moment");
     var ajax = require("./ajax");
 
+
     this.processData = function(logID,data){
         getOrgUnitByPhone(logID,data.sender).then(function(orgUnits){
             var message = messageParser(data.content);
@@ -125,8 +126,8 @@ function Engine(){
     function prepareDVSAndPush(logID,message,ou,data,language){
 
         var orgUnit = ou.id;
-        var msgDate = moment(data.rcvd, "YYYY-MM-DD HH:mm:ss");
-        var period = msgDate.format("YYYYMMDD");
+        var msgDate = moment();
+        var period = msgDate.format("YYYYMMDD"); __logger.debug("Period="+period);
         var storedBy = CONSTANTS.username;
 
         var dv = {"dataValues":[]};
@@ -189,8 +190,8 @@ function Engine(){
 
         var type = undefined;
         var event = {};
-        var msgDate = moment(data.rcvd, "YYYY-MM-DD HH:mm:ss");
-        event.eventDate =  msgDate;
+        var msgDate = moment();
+        event.eventDate =  msgDate; __logger.debug("EventDate="+msgDate);
         event.dataValues = [];
         event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_MESSAGE,     value:data.content});
         event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_MESSAGE_ID,  value:data.msgId});
@@ -255,7 +256,7 @@ function Engine(){
     }
     function sendConfirmationMessage(logID,type,data,language,msgDate,phone){
 
-        if (type == CONSTANTS.PERFECT_MESSAGE && language != "English"){
+        if (type == CONSTANTS.PERFECT_MESSAGE && language == "Gujarati"){
 
             var message =  data["field1"]+","+
                             data["field2"]+","+
@@ -280,7 +281,7 @@ function Engine(){
         function callback(error,response,body){
             if (error == null){
                 body = JSON.parse(body);
-//__logger.info(JSON.stringify(body));
+__logger.info(JSON.stringify(body));
                 __logger.info(logID+"[ConfirmationSMS+]"+body.status);
             }else{
                 __logger.error(logID+"[ConfirmationSMS-]"+error.message);
