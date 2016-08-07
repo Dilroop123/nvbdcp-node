@@ -87,14 +87,20 @@ function Engine(){
         message = message.replace(/[,.%$#^@!`*&()=+_\[\]-]/g," ");
         message = message.replace(/\s+/g," ").trim();
 
-        var pattern = /^\s*\d+\s+\d+\s+\d+\s+\d\s+\d+\s+\d+\s+\d+\s*$/;
+        var pattern = /^\s*\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s*\d*\s*$/;
 
         if (pattern.test(message)){
             var msg_parts = message.split(" ");
 
-            for (var i=0;i<7;i++) {
+            for (var i=0;i<6;i++) {
                 result["field"+(i+1)] = msg_parts[i];
             }
+            if (msg_parts[6]){
+                result["field7"] = msg_parts[i];
+            }else{
+                result["field7"] = "0";
+            }
+
             return result;
         }
 
