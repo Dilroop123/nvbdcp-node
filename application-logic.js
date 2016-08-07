@@ -84,39 +84,17 @@ function Engine(){
             field7	:	undefined
         };
 
-         message = message.replace(/[.]+/g,".");
-         message = message.replace(/[.]\s+/g,".");
+        message = message.replace(/[,.%$#^@!`*&()=+_\[\]-]/g," ");
+        message = message.replace(/\s+/g," ").trim();
 
-        var pattern = /^\s*\d+\s*[.]\s*\d+\s*[.]\s*\d+\s+\d+\s*[.]\s*\d+\s*[.]\s*\d+\s+\d+\s*$/;
-        var index = 0;
+        var pattern = /^\s*\d+\s+\d+\s+\d+\s+\d\s+\d+\s+\d+\s+\d+\s*$/;
+
         if (pattern.test(message)){
+            var msg_parts = message.split(" ");
 
-            index= message.indexOf(".");
-            result.field1 = message.substring(0,index).trim();
-            message = message.substring(index+1,message.length);
-
-            index= message.indexOf(".");
-            result.field2 = message.substring(0,index).trim();
-            message = message.substring(index+1,message.length);
-
-                    index= message.indexOf(" ");
-                    result.field3 = message.substring(0,index).trim();
-                    message = message.substring(index+1,message.length);
-
-            index= message.indexOf(".");
-            result.field4 = message.substring(0,index).trim();
-            message = message.substring(index+1,message.length);
-
-            index= message.indexOf(".");
-            result.field5 = message.substring(0,index).trim();
-            message = message.substring(index+1,message.length);
-
-                    index= message.indexOf(" ");
-                    result.field6 = message.substring(0,index).trim();
-                    message = message.substring(index+1,message.length);
-
-            result.field7 = message.trim();
-
+            for (var i=0;i<7;i++) {
+                result["field"+(i+1)] = msg_parts[i];
+            }
             return result;
         }
 
