@@ -117,7 +117,7 @@ function Engine(){
         dv.dataValues.push(makeDVJson(CONSTANTS.field5.de,CONSTANTS.field5.coc,period,orgUnit,message["field5"],storedBy));
         dv.dataValues.push(makeDVJson(CONSTANTS.field6.de,CONSTANTS.field6.coc,period,orgUnit,message["field6"],storedBy));
         dv.dataValues.push(makeDVJson(CONSTANTS.field7.de,CONSTANTS.field7.coc,period,orgUnit,message["field7"],storedBy));
-        dv.dataValues.push(makeDVJson(CONSTANTS.field8.de,CONSTANTS.field8.coc,period,orgUnit,data.msgId,storedBy));
+        dv.dataValues.push(makeDVJson(CONSTANTS.field8.de,CONSTANTS.field8.coc,period,orgUnit,data.msgId+"-"+msgDate.format("YYYY-MM-DD HH:mm:ss Z"),storedBy));
         dv.dataValues.push(makeDVJson(CONSTANTS.field9.de,CONSTANTS.field9.coc,period,orgUnit,data.content,storedBy));
 
 
@@ -173,7 +173,7 @@ function Engine(){
         event.dataValues = [];
         event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_MESSAGE,     value:data.content});
         event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_MESSAGE_ID,  value:data.msgId});
-        event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_TIMESTAMP,   value:data.rcvd});
+        event.dataValues.push({ dataElement:CONSTANTS.EVENT_DE_TIMESTAMP,   value:msgDate.format("YYYY-MM-DD HH:mm:ss Z")});
 
         if (!orgUnit){
             type = CONSTANTS.INVALID_PHONE;

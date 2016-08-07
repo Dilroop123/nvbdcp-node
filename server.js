@@ -30,6 +30,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
 
+var moment = require("moment");
 
 /** Set Up Logging
  */ var winston = require('winston');
@@ -38,11 +39,15 @@ global.__logger = new (winston.Logger)({
     transports: [
         new (winston.transports.Console)({
             colorize: true,
-            timestamp: true
+            timestamp: function(){
+		return moment().format("YYYY-MM-DD HH:mm:ss Z");
+		}
         }),
         new (winston.transports.File)({
             filename: './logs/server.log',
-            timestamp: true
+            timestamp: function(){
+                return moment().format("YYYY-MM-DD HH:mm:ss Z");
+                }
         })
     ]
 });
@@ -56,8 +61,8 @@ var moment = require("moment");
 app.post('/pushSMS', function(req, res){
 
 
-    const logID = "["+req.body.msgId + "#" +moment().format("YYYY-MM-DD HH:mm:ss Z")+ "#" + req.body.sender + "] -> ";
-    __logger.info(logID+"====SMS Arrived==== "+"["+req.body.content+"] rcvd["+req.body.rcvd+"]");
+    const logID = "["+req.body.msgId + "#" + req.body.sender + "] -> ";
+    __logger.info(logID+"====[[[[SMS Arrived]]]]==== "+"["+req.body.content+"] rcvd["+req.body.rcvd+"]");
 
     try{
         if (req.body.sender == "919654232779")
