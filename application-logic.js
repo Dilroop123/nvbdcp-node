@@ -84,7 +84,7 @@ function Engine(){
             field7	:	undefined
         };
 
-        message = message.replace(/[,.%$#^@!`*&()=+_\[\]-]/g," ");
+        message = message.replace(/[!@#$%^&*()_;:,.?=/+\{}\[\]-]+/g," ");
         message = message.replace(/\s+/g," ").trim();
 
         var pattern = /^\s*\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s*\d*\s*$/;
