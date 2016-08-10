@@ -218,29 +218,10 @@ function Engine(){
             }
         }
     }
-    function utf16to8(str) {
-        var out, i, len, c;
 
-        out = "";
-        len = str.length;
-        for(i = 0; i < len; i++) {
-            c = str.charCodeAt(i);
-            if ((c >= 0x0001) && (c <= 0x007F)) {
-                out += str.charAt(i);
-            } else if (c > 0x07FF) {
-                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
-                out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
-                out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
-            } else {
-                out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
-                out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
-            }
-        }
-        return out;
-    }
     function sendConfirmationMessage(logID,type,data,language,msgDate,phone){
 
-        if (type == CONSTANTS.PERFECT_MESSAGE && language == "Gujarati"){
+        if (type == CONSTANTS.PERFECT_MESSAGE && language != "English" ){
 
             var message =  data["field1"]+","+
                             data["field2"]+","+
@@ -272,35 +253,6 @@ __logger.debug(JSON.stringify(body));
             }
         }
 
-//            var confirmationMessage = buildMsg(type,data,language,msgDate);
-//     //  confirmationMessage = utf16to8( confirmationMessage );
-//       // confirmationMessage =iconv.encode(confirmationMessage,"utf8");
-////confirmationMessage = confirmationMessage.toString("utf8");
-//        getUnicodeFromTextLocal(confirmationMessage,language,sendSMS);
-//        function sendSMS(error,response,body){
-//            if (error == null){
-//                body = JSON.parse(body);
-//                __logger.info(logID+"[getUnicode+]"+body.message.content);
-//                confirmationMessage = body.message.content;
-//                var url = buildURL(language);
-//                url = url+"&message="+confirmationMessage+"&numbers="+phone;
-//
-//                __logger.info(url);
-//                ajax.getReqWithoutAuth(url,callback);
-//
-//            }else{
-//                __logger.error(logID+"[getUnicode-]"+error.message);
-//            }
-//
-//            function callback(error,response,body){
-//                if (error == null){
-//                    body = JSON.parse(body);
-//                    __logger.info(JSON.stringify(body));
-//                    __logger.info(logID+"[ConfirmationSMS+]"+body.status);
-//                }else{
-//                    __logger.error(logID+"[ConfirmationSMS-]"+error.message);
-//                }
-//            }
         }
 
         function buildMsg(type,data,language,msgDate){
@@ -314,7 +266,6 @@ __logger.debug(JSON.stringify(body));
                 case CONSTANTS.PERFECT_MESSAGE :
 //__logger.info(JSON.stringify(translation));
                     msg = translation[CONSTANTS.PERFECT_MESSAGE];
-                    __logger.info(msg);
 				msg = msg + " "+translation["male"]+"("+
                                      data["field1"]+","+
                                      data["field2"]+","+
@@ -340,6 +291,8 @@ __logger.debug(JSON.stringify(body));
                     break;
             }
 
+            __logger.info("message = "+msg);
+
             return msg;
         }
 
@@ -363,7 +316,7 @@ __logger.debug(JSON.stringify(body));
     }
 
     function sendSMSThroughProxy(message,phone,language,date,callback){
-        var url = CONSTANTS.unicodeLookUpURL + "message="+message+"&mobileno="+phone+"&language="+language+"&date="+date;
+        var url = CONSTANTS.unicodeLookUpURL + "message="+message+"&mobileno="+phone+"&language="+language+"&date="+date+"&hash="+CONSTANTS.TEXTLOCAL_HASH;
         ajax.getReqWithoutAuth(url,callback);
     }
 }
