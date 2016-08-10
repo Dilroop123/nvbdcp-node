@@ -91,18 +91,21 @@ function Engine(){
         message = message.replace(/femel/g,"");
         message = message.replace(/male/g,"");
         message = message.replace(/mel/g,"");
-        message = message.replace(/m/g,"");
-        message = message.replace(/f/g,"");
 
+
+        message = message.replace(/side effect/g,"");
         message = message.replace(/sideeffect/g,"");
         message = message.replace(/effect/g,"");
-        message = message.replace(/se/g,"");
 
 
         message = message.replace(/919293210011/g,"");
         message = message.replace(/9293210011/g,"");
 
+        message = message.replace(/se/g,"");
         message = message.replace(/to/g,"");
+
+        message = message.replace(/m/g,"");
+        message = message.replace(/f/g,"");
         message = message.replace(/o/g,"0");
 
         message = message.replace(/\s+/g," ");
