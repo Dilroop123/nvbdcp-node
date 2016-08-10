@@ -241,6 +241,10 @@ function Engine(){
 
     function sendConfirmationMessage(logID,type,data,language,msgDate,phone){
 
+        if (language == "Odiya"){
+            language = "English";
+        }
+
         if (type == CONSTANTS.PERFECT_MESSAGE && language != "English" ){
 
             var message =  data["field1"]+","+
