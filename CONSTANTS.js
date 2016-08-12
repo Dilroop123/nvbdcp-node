@@ -33,6 +33,9 @@ exports.EVENT_DE_MESSAGE_ID = "NeVR3qMksxK";
 exports.EVENT_DE_PHONE = "EnCZWrS6PP3";
 exports.EVENT_DE_IS_FORMAT_VALID = "LtJaSGAvngC";
 exports.ORGUNIT_ROOT_UID = "WBFNadSm5EQ";
+exports.ORGUNIT_INVALID_PHONE_PARENT_UID = "wqMbt0s1I9q";
+exports.DATASET_MDA_UID = "FogsZjk0QOf";
+
 
 
 
@@ -85,7 +88,7 @@ exports.languageMap.English[exports.INVALID_PHONE] = "Your number is not registe
 exports.languageMap.English[exports.PERFECT_MESSAGE] = "Thank you! You sent";
 exports.languageMap.English["male"] = "Male";
 exports.languageMap.English["female"] = "Female";
-exports.languageMap.English["sideEffect"] = "SideEffect";
+exports.languageMap.English["sideEffect"] = "SE";
 
 
 exports.languageMap.Hindi[exports.INVALID_FORMAT] = "@U09050935094809270020092A094D0930093E09300942092A096400200938093909400020092A094D0930093E09300942092A002000330030002E00340030002E00320030002000330030002E00350030002E00360030002000310030";

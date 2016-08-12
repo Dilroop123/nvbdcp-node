@@ -19,6 +19,20 @@ exports.postReq = function(url,data,auth,callback) {
     });
 }
 
+
+exports.postWithoutDataReq = function(url,auth,callback) {
+    request({
+        url: url,
+        method: "POST",
+        headers: {
+            "Authorization": auth,
+            "Content-Type": "application/json",
+        }
+    }, function (error, response, body) {
+        callback(error,response,body);
+    });
+}
+
     exports.getReq = function(url,auth,callback) {
         request({
             url: url,

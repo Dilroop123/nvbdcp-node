@@ -10,7 +10,9 @@ function Engine(){
     var ajax = require("./ajax");
 
 
-    this.processData = function(logID,data){
+    this.processData = function(logID,data,entry){
+        if(entry){logID=logID + "-" + entry;}
+        var self = this;
         getOrgUnitByPhone(logID,data.sender).then(function(orgUnits){
             var message = messageParser(data.content);
             if (orgUnits.length>0){
@@ -24,7 +26,8 @@ function Engine(){
                     prepareDVSAndPush(logID,message,orgUnits[0],data,language);
                 }
             }else{// Phone not registered
-            //    __logger.info(logID + "Org Unit Not Found");
+                __logger.info(logID +  "Org Unit Not Found..will create");
+                createOrgUnit(logID,data,self.processData);
                 if (message == CONSTANTS.INVALID_FORMAT) {
                         prepareEventAndPush(logID,data,false,false,"English");
                     }else{
@@ -34,6 +37,67 @@ function Engine(){
         })
     }
 
+    function createOrgUnit(logID,data,processData){
+        var ou = {
+            name:"OU-"+data.sender,
+            parent:{
+                id : CONSTANTS.ORGUNIT_INVALID_PHONE_PARENT_UID
+            },
+            openingDate:moment().format("YYYY-MM-DD"),
+            shortName: "OU-"+data.sender,
+            //dataSets: [
+            //    {
+            //        id: CONSTANTS.DATASET_MDA_UID
+            //    }
+            //],
+            //programs: [
+            //    {
+            //        id: CONSTANTS.PROGRAM_INVALID_FORMAT
+            //    }
+            //],
+            phoneNumber : data.sender
+        }
+
+        ajax.postReq(CONSTANTS.DHIS_URL_BASE+"/api/organisationUnits?",ou,CONSTANTS.auth,callback);
+
+        function callback(error,response,body){
+            if (error == null){
+                __logger.info(logID+"[OU_CREATION+]"+body.status);
+                assignToProgram(logID,data,processData,body.response.lastImported)
+
+            }else{
+                __logger.error(logID+"[OU_CREATION-]"+error.message);
+            }
+        }
+
+
+    }
+
+    function assignToProgram(logID,data,processData,ou){
+
+        __logger.debug(logID + " ou="+ou);
+        ajax.postWithoutDataReq(CONSTANTS.DHIS_URL_BASE+"/api/programs/"+CONSTANTS.PROGRAM_INVALID_FORMAT+"/organisationUnits/"+ou,CONSTANTS.auth,assignToDataSet);
+
+        function assignToDataSet(error,response,body){
+            if (error == null){
+
+                __logger.info(logID+"[UPDATE-PROGRAM+]"+response.statusMessage);
+                ajax.postWithoutDataReq(CONSTANTS.DHIS_URL_BASE+"/api/dataSets/"+CONSTANTS.DATASET_MDA_UID+"/organisationUnits/"+ou,CONSTANTS.auth,reentry);
+            }else{
+                __logger.error(logID+"[UPDATE-PROGRAM-]"+error.message);
+            }
+        }
+
+        function reentry(error,response,body){
+            if (error == null){
+                __logger.info(logID+"[UPDATE-DATASET+]"+response.statusMessage);
+                processData(logID,data,"REENTRY")
+
+            }else{
+                __logger.error(logID+"[UPDATE-DATASET-]"+error.message);
+            }
+        }
+    }
     function extractLanguage(orgUnit){
         var language = "English";
         var parent = orgUnit.parent;
@@ -108,7 +172,7 @@ function Engine(){
         message = message.replace(/f/g,"");
         message = message.replace(/o/g,"0");
 
-        message = message.replace(/\s+/g," ");
+        message = message.replace(/\s+/g," ").trim();
 
         var pattern = /^\s*\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s*\d*\s*$/;
 
@@ -220,11 +284,10 @@ function Engine(){
             event.orgUnit = orgUnit.id;
             type = CONSTANTS.INVALID_FORMAT;
             event.program = CONSTANTS.PROGRAM_INVALID_FORMAT;
+            sendConfirmationMessage(logID,type,data,language,msgDate,data.sender);
         }
 
         pushEvent(logID,event);
-        sendConfirmationMessage(logID,type,data,language,msgDate,data.sender);
-
 
         function pushEvent(logID,event){
             var url = CONSTANTS.DHIS_URL_BASE+"/api/events?";
