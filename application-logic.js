@@ -40,6 +40,7 @@ function Engine(){
     function createOrgUnit(logID,data,processData){
         var ou = {
             name:"OU-"+data.sender,
+            code : data.sender,
             parent:{
                 id : CONSTANTS.ORGUNIT_INVALID_PHONE_PARENT_UID
             },
@@ -61,9 +62,15 @@ function Engine(){
         ajax.postReq(CONSTANTS.DHIS_URL_BASE+"/api/organisationUnits?",ou,CONSTANTS.auth,callback);
 
         function callback(error,response,body){
-            if (error == null){
-                __logger.info(logID+"[OU_CREATION+]"+body.status);
-                assignToProgram(logID,data,processData,body.response.lastImported)
+            if (error == null && response){
+                
+                if (response.statusMessage == "OK"){
+                    __logger.info(logID+"[OU_CREATION+]"+body.status);
+                    assignToProgram(logID,data,processData,body.response.lastImported)
+                }else{
+                    __logger.info(logID+"[OU_CREATION+-]"+response.statusMessage );
+                }
+
 
             }else{
                 __logger.error(logID+"[OU_CREATION-]"+error.message);
