@@ -46,16 +46,6 @@ function Engine(){
             },
             openingDate:moment().format("YYYY-MM-DD"),
             shortName: "OU-"+data.sender,
-            //dataSets: [
-            //    {
-            //        id: CONSTANTS.DATASET_MDA_UID
-            //    }
-            //],
-            //programs: [
-            //    {
-            //        id: CONSTANTS.PROGRAM_INVALID_FORMAT
-            //    }
-            //],
             phoneNumber : data.sender
         }
 
@@ -148,51 +138,20 @@ function Engine(){
         var result = {
             field1	:	undefined,
             field2	:	undefined,
-            field3	:	undefined,
-            field4	:	undefined,
-            field5	:	undefined,
-            field6	:	undefined,
-            field7	:	undefined
+            field3	:	undefined
         };
 
         message = message.replace(/[<>~`"'!@#$%^&*()_;:,.?=/+\{}\[\]\\-]+/g," ");
         message = message.toLowerCase().trim();
-
-        message = message.replace(/female/g,"");
-        message = message.replace(/femel/g,"");
-        message = message.replace(/male/g,"");
-        message = message.replace(/mel/g,"");
-
-
-        message = message.replace(/side effect/g,"");
-        message = message.replace(/sideeffect/g,"");
-        message = message.replace(/effect/g,"");
-
-
-        message = message.replace(/919293210011/g,"");
-        message = message.replace(/9293210011/g,"");
-
-        message = message.replace(/se/g,"");
-        message = message.replace(/to/g,"");
-
-        message = message.replace(/m/g,"");
-        message = message.replace(/f/g,"");
-        message = message.replace(/o/g,"0");
-
         message = message.replace(/\s+/g," ").trim();
 
-        var pattern = /^\s*\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s*\d*\s*$/;
+        var pattern = /^\s*\d+\s+\d+\s+\d+\s*$/;
 
         if (pattern.test(message)){
             var msg_parts = message.split(" ");
 
-            for (var i=0;i<6;i++) {
+            for (var i=0;i<3;i++) {
                 result["field"+(i+1)] = msg_parts[i];
-            }
-            if (msg_parts[6]){
-                result["field7"] = msg_parts[i];
-            }else{
-                result["field7"] = "0";
             }
 
             return result;
@@ -213,12 +172,8 @@ function Engine(){
         dv.dataValues.push(makeDVJson(CONSTANTS.field1.de,CONSTANTS.field1.coc,period,orgUnit,message["field1"],storedBy));
         dv.dataValues.push(makeDVJson(CONSTANTS.field2.de,CONSTANTS.field2.coc,period,orgUnit,message["field2"],storedBy));
         dv.dataValues.push(makeDVJson(CONSTANTS.field3.de,CONSTANTS.field3.coc,period,orgUnit,message["field3"],storedBy));
-        dv.dataValues.push(makeDVJson(CONSTANTS.field4.de,CONSTANTS.field4.coc,period,orgUnit,message["field4"],storedBy));
-        dv.dataValues.push(makeDVJson(CONSTANTS.field5.de,CONSTANTS.field5.coc,period,orgUnit,message["field5"],storedBy));
-        dv.dataValues.push(makeDVJson(CONSTANTS.field6.de,CONSTANTS.field6.coc,period,orgUnit,message["field6"],storedBy));
-        dv.dataValues.push(makeDVJson(CONSTANTS.field7.de,CONSTANTS.field7.coc,period,orgUnit,message["field7"],storedBy));
-        dv.dataValues.push(makeDVJson(CONSTANTS.field8.de,CONSTANTS.field8.coc,period,orgUnit,data.msgId+"-"+msgDate.format("YYYY-MM-DD HH:mm:ss Z"),storedBy));
-        dv.dataValues.push(makeDVJson(CONSTANTS.field9.de,CONSTANTS.field9.coc,period,orgUnit,data.content,storedBy));
+        dv.dataValues.push(makeDVJson(CONSTANTS.field4.de,CONSTANTS.field4.coc,period,orgUnit,data.msgId+"-"+msgDate.format("YYYY-MM-DD HH:mm:ss Z"),storedBy));
+        dv.dataValues.push(makeDVJson(CONSTANTS.field5.de,CONSTANTS.field5.coc,period,orgUnit,data.content,storedBy));
 
 
         ajax.postReq(CONSTANTS.DHIS_URL_BASE+"/api/dataValueSets?",dv,CONSTANTS.auth,callback);
@@ -322,11 +277,7 @@ function Engine(){
 
             var message =  data["field1"]+","+
                             data["field2"]+","+
-                            data["field3"]+","+
-                            data["field4"]+","+
-                            data["field5"]+","+
-                            data["field6"]+","+
-                            data["field7"];
+                            data["field3"];
 
             sendSMSThroughProxy(message,phone,language,msgDate.format("DD-MM-YYYY"),callback);
 
@@ -363,14 +314,9 @@ __logger.debug(JSON.stringify(body));
                 case CONSTANTS.PERFECT_MESSAGE :
 //__logger.info(JSON.stringify(translation));
                     msg = translation[CONSTANTS.PERFECT_MESSAGE];
-				msg = msg + " "+translation["male"]+"("+
-                                     data["field1"]+","+
+				msg = msg +          data["field1"]+","+
                                      data["field2"]+","+
-                                     data["field3"]+"),"+translation["female"]+"("+
-                                     data["field4"]+","+
-                                     data["field5"]+","+
-                                     data["field6"]+"),"+translation["sideEffect"]+"("+
-                                     data["field7"]+") ";
+                                     data["field3"];
 
                                      if (language=="English" || language == "Hindi"){
                                         msg =  msg+msgDate.format("DD-MM-YYYY");
@@ -405,12 +351,6 @@ __logger.debug(JSON.stringify(body));
         return url;
         }
 
-    function getUnicodeFromTextLocal(msg,language,callback){
-
-        var url = CONSTANTS.unicodeLookUpURL + "message="+msg;
-        ajax.getReqWithoutAuth(url,callback);
-
-    }
 
     function sendSMSThroughProxy(message,phone,language,date,callback){
         var url = CONSTANTS.unicodeLookUpURL + "message="+message+"&mobileno="+phone+"&language="+language+"&date="+date+"&hash="+CONSTANTS.TEXTLOCAL_HASH;

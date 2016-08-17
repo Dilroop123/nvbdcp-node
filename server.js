@@ -60,20 +60,11 @@ var moment = require("moment");
 // Open API for receieving POst req
 app.post('/pushSMS', function(req, res){
 
-
     const logID = "["+req.body.msgId + "#" + req.body.sender + "] -> ";
     __logger.info(logID+"====[[[[SMS Arrived]]]]==== "+"["+req.body.content+"] rcvd["+req.body.rcvd+"]");
 
     try{
         Engine.processData(logID,req.body);
-
-        //if (req.body.sender == "919654232779")
-        //{
-        //    //ajax.forwardMessage(req.body);
-        //}
-        //else{
-        //
-        //}
 
     }catch(error){
         __logger.fatal(logID+error);
@@ -84,7 +75,7 @@ app.post('/pushSMS', function(req, res){
 });
 
 
-var server = app.listen(8000, function () {
+var server = app.listen(8001, function () {
 
     var host = server.address().address
     var port = server.address().port
