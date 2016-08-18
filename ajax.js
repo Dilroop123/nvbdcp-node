@@ -56,8 +56,7 @@ exports.postWithoutDataReq = function(url,auth,callback) {
     }
 
 
-exports.forwardMessage = function(body){
-    var url = "http://180.151.233.61:8000/pushSMS";
+exports.forwardMessage = function(url,body){
 
     request({
         url: url,

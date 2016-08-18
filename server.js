@@ -56,16 +56,23 @@ global.__logger = new (winston.Logger)({
 
 var ajax = require("./ajax");
 var moment = require("moment");
+var CONSTANTS = require("./CONSTANTS");
 
 // Open API for receieving POst req
 app.post('/pushSMS', function(req, res){
-
 
     const logID = "["+req.body.msgId + "#" + req.body.sender + "] -> ";
     __logger.info(logID+"====[[[[SMS Arrived]]]]==== "+"["+req.body.content+"] rcvd["+req.body.rcvd+"]");
 
     try{
-        Engine.processData(logID,req.body);
+
+        if (req.body.content.trim().toLowerCase().substr(0,4) == "lcdc"){
+             ajax.forwardMessage(CONSTANTS.LCDC_FORWARD_URL,req.body);
+
+        }else{
+            Engine.processData(logID,req.body);
+
+        }
 
         //if (req.body.sender == "919654232779")
         //{
