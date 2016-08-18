@@ -15,6 +15,7 @@ function Engine(){
         var self = this;
         getOrgUnitByPhone(logID,data.sender).then(function(orgUnits){
             var message = messageParser(data.content);
+            message = message.substr(4,message.length);
             if (orgUnits.length>0){
                 var language = extractLanguage(orgUnits[0])
                 __logger.debug("language="+language);
