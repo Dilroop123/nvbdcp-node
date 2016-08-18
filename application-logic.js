@@ -14,8 +14,7 @@ function Engine(){
         if(entry){logID=logID + "-" + entry;}
         var self = this;
         getOrgUnitByPhone(logID,data.sender).then(function(orgUnits){
-            var message = messageParser(data.content);
-            message = message.substr(4,message.length);
+            var message = messageParser(data.content.toLowerCase().trim().substr(4,data.content.length));
             if (orgUnits.length>0){
                 var language = extractLanguage(orgUnits[0])
                 __logger.debug("language="+language);
@@ -315,9 +314,9 @@ __logger.debug(JSON.stringify(body));
                 case CONSTANTS.PERFECT_MESSAGE :
 //__logger.info(JSON.stringify(translation));
                     msg = translation[CONSTANTS.PERFECT_MESSAGE];
-				msg = msg +          data["field1"]+","+
-                                     data["field2"]+","+
-                                     data["field3"];
+				msg = msg +      " Household Visited="+    data["field1"]+",People Examined="+
+                                     data["field2"]+",Suspected Cases="+
+                                     data["field3"]+" ";
 
                                      if (language=="English" || language == "Hindi"){
                                         msg =  msg+msgDate.format("DD-MM-YYYY");
