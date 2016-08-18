@@ -40,8 +40,8 @@ exports.DATASET_MDA_UID = "CmeUDQr7B8v";
 exports.DE_Household_Visits = "SpdEKy9lF4S";
 exports.DE_People_Examined = "FicPoBEAl7I";
 exports.DE_Suspected_Cases = "CnSLbi9Ki9V";
-exports.DE_MessageID = "MtIn87iDOh3";
-exports.DE_Message = "bfkx6RMLAzI";
+exports.DE_MessageID = "Cf5Q7fSIWmI";
+exports.DE_Message = "CkCai6Qu1uW";
 
 exports.COC_DEFAULT = "HllvX50cXC0";
 
