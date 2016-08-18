@@ -58,7 +58,7 @@ var ajax = require("./ajax");
 var moment = require("moment");
 
 // Open API for receieving POst req
-app.post('/pushSMS', function(req, res){
+app.post('/pushsmslcdc', function(req, res){
 
     const logID = "["+req.body.msgId + "#" + req.body.sender + "] -> ";
     __logger.info(logID+"====[[[[SMS Arrived]]]]==== "+"["+req.body.content+"] rcvd["+req.body.rcvd+"]");
