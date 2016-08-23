@@ -8,7 +8,9 @@ function Engine(){
     var Q = require('q');
     var moment = require("moment");
     var ajax = require("./ajax");
+    var pds = require("./phone-directory-service");
 
+    var phoneDirectoryService = new pds.phoneDirectoryService(__logger);
 
     this.processData = function(logID,data,entry){
         if(entry){logID=logID + "-" + entry;}
@@ -38,11 +40,14 @@ function Engine(){
     }
 
     function createOrgUnit(logID,data,processData){
+
+        var parentOU = phoneDirectoryService.getStateByPhone(logID,data.sender);
+
         var ou = {
             name:"OU-"+data.sender,
             code : data.sender,
             parent:{
-                id : CONSTANTS.ORGUNIT_INVALID_PHONE_PARENT_UID
+                id : parentOU
             },
             openingDate:moment().format("YYYY-MM-DD"),
             shortName: "OU-"+data.sender,

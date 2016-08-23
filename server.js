@@ -1,7 +1,6 @@
 var express = require('express');
 var http = require('http');
 var request = require('request');
-var Engine = require('./application-logic');
 
 // Initialise
 var app = express();
@@ -54,6 +53,7 @@ global.__logger = new (winston.Logger)({
 /**
 */
 
+var Engine = require('./application-logic');
 var ajax = require("./ajax");
 var moment = require("moment");
 
