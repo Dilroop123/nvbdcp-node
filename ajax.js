@@ -74,3 +74,25 @@ exports.forwardMessage = function(url,body){
         }
     });
 }
+
+exports.lcdcParser = function(message){
+
+    message = JSON.parse(JSON.stringify(message));
+    var result = {
+        field1	:	undefined,
+        field2	:	undefined,
+        field3	:	undefined
+    };
+
+    message = message.replace(/[<>~`"'!@#$%^&*()_;:,.?=/+\{}\[\]\\-]+/g," ");
+    message = message.toLowerCase().trim();
+    message = message.replace(/\s+/g," ").trim();
+
+    var pattern = /^\s*\d+\s+\d+\s+\d+\s*$/;
+
+    if (pattern.test(message)){
+     return true
+    }
+
+    return false;
+}

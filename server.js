@@ -66,9 +66,8 @@ app.post('/pushSMS', function(req, res){
 
     try{
 
-        if (req.body.content.trim().toLowerCase().substr(0,4) == "lcdc"){
+        if (ajax.lcdcParser(req.body.content)){
              ajax.forwardMessage(CONSTANTS.LCDC_FORWARD_URL,req.body);
-
         }else{
             Engine.processData(logID,req.body);
 
