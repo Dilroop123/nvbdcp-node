@@ -10,7 +10,7 @@ exports.unicodeLookUpURL = "http://ntdindia.org/examples/servlets/servlet/HelloW
 
 exports.TEXTLOCAL_USERNAME = "harsh.atal@gmail.com";
 exports.TEXTLOCAL_HASH = "Harsh";
-exports.TEXTLOCAL_SENDER = "NVBDCP";
+exports.TEXTLOCAL_SENDER = "LCDCIN";
 
 
 exports.USER_NOT_FOUND = "User Not Found";

@@ -289,7 +289,7 @@ function Engine(){
         }else{
             var confirmationMessage = buildMsg(type,data,language,msgDate);
 //__logger.info(type+","+JSON.stringify(data) + phone);
-            var url = buildURL();
+            var url = buildURL(language);
             url = url+"&message="+confirmationMessage+"&numbers="+phone;
 
 //__logger.info(url);
@@ -319,9 +319,9 @@ __logger.debug(JSON.stringify(body));
                 case CONSTANTS.PERFECT_MESSAGE :
 //__logger.info(JSON.stringify(translation));
                     msg = translation[CONSTANTS.PERFECT_MESSAGE];
-				msg = msg +      " Household Visited="+    data["field1"]+",People Examined="+
-                                     data["field2"]+",Suspected Cases="+
-                                     data["field3"]+" ";
+				msg = msg +      " HouseholdVisit="+    data["field1"]+",PeopleExamined="+
+                                     data["field2"]+",SuspectedCases="+
+                                     data["field3"]+".";
 
                                      if (language=="English" || language == "Hindi"){
                                         msg =  msg+msgDate.format("DD-MM-YYYY");
