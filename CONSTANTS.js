@@ -3,7 +3,7 @@
  */
 
 
-exports.DHIS_URL_BASE = "http://localhost:8080/dhis23";
+exports.DHIS_URL_BASE = "http://ntdindia.org/lcdc";
 
 exports.sendSMSURL = "http://api.textlocal.in/send";
 exports.unicodeLookUpURL = "http://ntdindia.org/examples/servlets/servlet/HelloWorldExample?";
