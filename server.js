@@ -65,13 +65,7 @@ app.post('/pushSMS', function(req, res){
     __logger.info(logID+"====[[[[SMS Arrived]]]]==== "+"["+req.body.content+"] rcvd["+req.body.rcvd+"]");
 
     try{
-
-        if (ajax.lcdcParser(req.body.content)){
-             ajax.forwardMessage(CONSTANTS.LCDC_FORWARD_URL,req.body);
-        }else{
-            Engine.processData(logID,req.body);
-
-        }
+        Engine.processData(logID,req.body);
 
         //if (req.body.sender == "919654232779")
         //{
