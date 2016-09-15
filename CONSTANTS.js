@@ -4,6 +4,7 @@
 
 
 exports.DHIS_URL_BASE = "http://ntdindia.org/lcdc";
+exports.NVBDCP_FORWARD_URL = "http://ntdindia.org:8000/pushSMS";
 
 exports.sendSMSURL = "http://api.textlocal.in/send";
 exports.unicodeLookUpURL = "http://ntdindia.org/examples/servlets/servlet/HelloWorldExample?";

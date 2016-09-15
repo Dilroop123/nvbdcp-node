@@ -56,6 +56,7 @@ global.__logger = new (winston.Logger)({
 var Engine = require('./application-logic');
 var ajax = require("./ajax");
 var moment = require("moment");
+var CONSTANTS = require("./CONSTANTS");
 
 // Open API for receieving POst req
 app.post('/pushsmslcdc', function(req, res){
@@ -64,7 +65,12 @@ app.post('/pushsmslcdc', function(req, res){
     __logger.info(logID+"====[[[[SMS Arrived]]]]==== "+"["+req.body.content+"] rcvd["+req.body.rcvd+"]");
 
     try{
-        Engine.processData(logID,req.body);
+
+        if (ajax.nvbdcpParser(req.body.content)){
+            ajax.forwardMessage(CONSTANTS.NVBDCP_FORWARD_URL,req.body,callback);
+        }else{
+            Engine.processData(logID,req.body);
+        }
 
     }catch(error){
         __logger.fatal(logID+error);
@@ -72,6 +78,14 @@ app.post('/pushsmslcdc', function(req, res){
 
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.end('ok');
+
+    function callback(error,response,body){
+        if(error == null){
+            __logger.info(logID+"[Forward+]");
+        }else{
+            __logger.error(logID+"[Forward-]"+error.message);
+        }
+    }
 });
 
 
