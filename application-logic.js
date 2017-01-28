@@ -52,7 +52,7 @@ function Engine(){
             openingDate:moment().format("YYYY-MM-DD"),
             shortName: "OU-"+data.sender,
             phoneNumber : data.sender
-        }
+        };
 
         ajax.postReq(CONSTANTS.DHIS_URL_BASE+"/api/organisationUnits?",ou,CONSTANTS.auth,callback);
 

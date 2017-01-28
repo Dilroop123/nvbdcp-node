@@ -3,7 +3,7 @@
  */
 
 
-exports.DHIS_URL_BASE = "http://ntdindia.org/lcdc";
+exports.DHIS_URL_BASE = "http://ntdindia.org/ka";
 exports.NVBDCP_FORWARD_URL = "http://ntdindia.org:8000/pushSMS";
 
 exports.sendSMSURL = "http://api.textlocal.in/send";
@@ -39,9 +39,9 @@ exports.ORGUNIT_INVALID_PHONE_PARENT_UID = "Qcc9LBRGFqU";
 exports.DATASET_MDA_UID = "CmeUDQr7B8v";
 
 
-exports.DE_Household_Visits = "SpdEKy9lF4S";
-exports.DE_People_Examined = "FicPoBEAl7I";
-exports.DE_Suspected_Cases = "CnSLbi9Ki9V";
+ exports.DE_Household_Visits = "lR9hSoyf3mm";
+ exports.DE_People_Examined = "VewMyRMr722";
+ exports.DE_Suspected_Cases = "pJWmZLgIwtg";
 exports.DE_MessageID = "Cf5Q7fSIWmI";
 exports.DE_Message = "CkCai6Qu1uW";
 

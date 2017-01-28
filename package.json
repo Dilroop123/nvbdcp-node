@@ -18,11 +18,12 @@
   },
   "homepage": "https://github.com/hispindia/nvbdcp-node#readme",
   "dependencies": {
+    "body-parser": "1.15.2",
+    "express": "4.14.0",
     "log4js": "^0.6.12",
-    "express" : "4.14.0",
+    "moment": "2.13.0",
+    "q": "1.4.1",
     "request": "2.72.0",
-    "q" : "1.4.1",
-    "moment" : "2.13.0",
-    "body-parser" : "1.15.2"
+    "winston": "^2.3.1"
   }
 }

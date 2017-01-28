@@ -59,19 +59,13 @@ var moment = require("moment");
 var CONSTANTS = require("./CONSTANTS");
 
 // Open API for receieving POst req
-app.post('/pushsmslcdc', function(req, res){
+app.get('/pushsmsroutine', function(req, res){
 
     const logID = "["+req.body.msgId + "#" + req.body.sender + "] -> ";
     __logger.info(logID+"====[[[[SMS Arrived]]]]==== "+"["+req.body.content+"] rcvd["+req.body.rcvd+"]");
 
     try{
-
-        if (ajax.nvbdcpParser(req.body.content)){
-            ajax.forwardMessage(CONSTANTS.NVBDCP_FORWARD_URL,req.body,callback);
-        }else{
             Engine.processData(logID,req.body);
-        }
-
     }catch(error){
         __logger.fatal(logID+error);
     }
