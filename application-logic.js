@@ -61,7 +61,7 @@ function Engine(){
                 
                 if (response.statusCode == 201){
                     __logger.info(logID+"[OU_CREATION+]"+body.status);
-                    assignToProgram(logID,data,processData,body.response.lastImported)
+                    assignToProgram(logID,data,processData,body.response.uid);
                 }else{
                     __logger.info(logID+"[OU_CREATION+-]"+response.statusMessage );
                 }
