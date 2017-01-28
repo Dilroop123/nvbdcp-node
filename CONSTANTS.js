@@ -25,25 +25,25 @@ exports.PERFECT_MESSAGE = "PERFECT_MESSAGE";
 
 exports.META_ATTRIBUTE_OU_LANGUAGE = "AANHn7zGfod";
 
-exports.PROGRAM_PHONE_NOT_FOUND = "jGLmvhuRaQo";
-exports.PROGRAM_INVALID_FORMAT = "Glw1x0Ie0Kp";
+ exports.PROGRAM_PHONE_NOT_FOUND = "jje9OCKHNWM";
+ exports.PROGRAM_INVALID_FORMAT = "AaIcgx0aR4I";
 
-exports.EVENT_DE_TIMESTAMP = "dXEqyTjQIyH";
-exports.EVENT_DE_MESSAGE = "h0hkQ3pEfpe";
-exports.EVENT_DE_MESSAGE_ID = "OX6Q8eeZEBD";
-exports.EVENT_DE_PHONE = "Y3hUmVNrIua";
-exports.EVENT_DE_IS_FORMAT_VALID = "QxPltjEUO8s";
+ exports.EVENT_DE_TIMESTAMP = "sTQAIEwQn9B";
+ exports.EVENT_DE_MESSAGE = "izKwXX2YAmA";
+ exports.EVENT_DE_MESSAGE_ID = "mTIYuvDiBbO";
+ exports.EVENT_DE_PHONE = "H3Gdjn5SsBQ";
+ exports.EVENT_DE_IS_FORMAT_VALID = "am4pU9lBNvT";
 
 exports.ORGUNIT_ROOT_UID = "Hj5ELcFqBbP";
 exports.ORGUNIT_INVALID_PHONE_PARENT_UID = "Qcc9LBRGFqU";
-exports.DATASET_MDA_UID = "CmeUDQr7B8v";
+exports.DATASET_MDA_UID = "npDKdTR0Xue";
 
 
  exports.DE_Household_Visits = "lR9hSoyf3mm";
  exports.DE_People_Examined = "VewMyRMr722";
  exports.DE_Suspected_Cases = "pJWmZLgIwtg";
-exports.DE_MessageID = "Cf5Q7fSIWmI";
-exports.DE_Message = "CkCai6Qu1uW";
+ exports.DE_MessageID = "xm2yE318Kcm";
+ exports.DE_Message = "CdY3hYlB9mp";
 
 exports.COC_DEFAULT = "HllvX50cXC0";
 

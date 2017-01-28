@@ -61,6 +61,19 @@ var CONSTANTS = require("./CONSTANTS");
 // Open API for receieving POst req
 app.get('/pushsmsroutine', function(req, res){
 
+    const msgId = "tetst";
+    var sender = req.query.phone;
+    sender = sender.substr(1,sender.length);
+    const content = req.query.text;
+    const rcvd = moment(new Date()).format("YYYY-MM-DD");
+    
+    req.body = {
+        msgId : msgId,
+        sender :sender,
+        rcvd : rcvd,
+        content : content
+    };
+   
     const logID = "["+req.body.msgId + "#" + req.body.sender + "] -> ";
     __logger.info(logID+"====[[[[SMS Arrived]]]]==== "+"["+req.body.content+"] rcvd["+req.body.rcvd+"]");
 
