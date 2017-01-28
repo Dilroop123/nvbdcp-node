@@ -59,7 +59,7 @@ function Engine(){
         function callback(error,response,body){
             if (error == null && response){
                 
-                if (response.statusMessage == "OK"){
+                if (response.statusCode == 201){
                     __logger.info(logID+"[OU_CREATION+]"+body.status);
                     assignToProgram(logID,data,processData,body.response.lastImported)
                 }else{
