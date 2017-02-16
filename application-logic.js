@@ -214,7 +214,7 @@ function Engine(){
     function getOrgUnitByPhone(logID,phone){
         var def = Q.defer();
         var url = CONSTANTS.DHIS_URL_BASE+"/api/organisationUnits?fields=id,name,attributeValues,parent[parent[parent[parent[parent[parent[id,name,attributeValues[value,attribute[id,name]]]]]]]]&filter=phoneNumber:eq:"+phone;
-
+__logger.info(logID + "DEBUG" + phone + "URL"+url);
         ajax.getReq(url,CONSTANTS.auth,callback);
         function callback(error,response,body){
             if(error == null){
