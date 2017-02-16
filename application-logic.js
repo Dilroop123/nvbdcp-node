@@ -179,8 +179,8 @@ function Engine(){
         dv.dataValues.push(makeDVJson(CONSTANTS.field1.de,CONSTANTS.field1.coc,period,orgUnit,message["field1"],storedBy));
         dv.dataValues.push(makeDVJson(CONSTANTS.field2.de,CONSTANTS.field2.coc,period,orgUnit,message["field2"],storedBy));
         dv.dataValues.push(makeDVJson(CONSTANTS.field3.de,CONSTANTS.field3.coc,period,orgUnit,message["field3"],storedBy));
-        dv.dataValues.push(makeDVJson(CONSTANTS.field4.de,CONSTANTS.field6.coc,period,orgUnit,message["field6"],storedBy));
-        dv.dataValues.push(makeDVJson(CONSTANTS.field5.de,CONSTANTS.field7.coc,period,orgUnit,message["field7"],storedBy));
+        dv.dataValues.push(makeDVJson(CONSTANTS.field4.de,CONSTANTS.field6.coc,period,orgUnit,message["field4"],storedBy));
+        dv.dataValues.push(makeDVJson(CONSTANTS.field5.de,CONSTANTS.field7.coc,period,orgUnit,message["field5"],storedBy));
       
         dv.dataValues.push(makeDVJson(CONSTANTS.field6.de,CONSTANTS.field4.coc,period,orgUnit,data.msgId+"-"+msgDate.format("YYYY-MM-DD HH:mm:ss Z"),storedBy));
         dv.dataValues.push(makeDVJson(CONSTANTS.field7.de,CONSTANTS.field5.coc,period,orgUnit,data.content,storedBy));
