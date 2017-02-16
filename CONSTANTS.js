@@ -3,7 +3,7 @@
  */
 
 
-exports.DHIS_URL_BASE = "http://ntdindia.org/ka";
+exports.DHIS_URL_BASE = "http://http://139.162.61.147/malariasms";
 exports.NVBDCP_FORWARD_URL = "http://ntdindia.org:8000/pushSMS";
 
 exports.sendSMSURL = "http://api.textlocal.in/send";
@@ -34,8 +34,8 @@ exports.META_ATTRIBUTE_OU_LANGUAGE = "AANHn7zGfod";
  exports.EVENT_DE_PHONE = "H3Gdjn5SsBQ";
  exports.EVENT_DE_IS_FORMAT_VALID = "am4pU9lBNvT";
 
-exports.ORGUNIT_ROOT_UID = "Hj5ELcFqBbP";
-exports.ORGUNIT_INVALID_PHONE_PARENT_UID = "Qcc9LBRGFqU";
+exports.ORGUNIT_ROOT_UID = "AIPoALCPi8d";
+exports.ORGUNIT_INVALID_PHONE_PARENT_UID = "hX3FcBJ5Dkg";
 exports.DATASET_MDA_UID = "npDKdTR0Xue";
 
 
