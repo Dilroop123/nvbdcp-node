@@ -3,7 +3,7 @@
  */
 
 
-exports.DHIS_URL_BASE = "http://http://139.162.61.147/malariasms";
+exports.DHIS_URL_BASE = "http://139.162.61.147/malariasms";
 exports.NVBDCP_FORWARD_URL = "http://ntdindia.org:8000/pushSMS";
 
 exports.sendSMSURL = "http://api.textlocal.in/send";
