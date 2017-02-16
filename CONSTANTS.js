@@ -11,7 +11,7 @@ exports.unicodeLookUpURL = "http://ntdindia.org/examples/servlets/servlet/HelloW
 
 exports.TEXTLOCAL_USERNAME = "harsh.atal@gmail.com";
 exports.TEXTLOCAL_HASH = "Harsh";
-exports.TEXTLOCAL_SENDER = "LCDCIN";
+exports.TEXTLOCAL_SENDER = "NVBDCP";
 
 
 exports.USER_NOT_FOUND = "User Not Found";
@@ -39,11 +39,14 @@ exports.ORGUNIT_INVALID_PHONE_PARENT_UID = "Qcc9LBRGFqU";
 exports.DATASET_MDA_UID = "npDKdTR0Xue";
 
 
- exports.DE_Household_Visits = "lR9hSoyf3mm";
- exports.DE_People_Examined = "VewMyRMr722";
- exports.DE_Suspected_Cases = "pJWmZLgIwtg";
+ exports.DE_Household_Visits = "VewMyRMr722";
+ exports.DE_People_Examined = "pJWmZLgIwtg";
+ exports.DE_Suspected_Cases = "lR9hSoyf3mm";
  exports.DE_MessageID = "xm2yE318Kcm";
  exports.DE_Message = "CdY3hYlB9mp";
+
+ exports.DE_FEVER_CASES = "Kn4l1U6kfeX";
+exports.DE_TESTS_DONE = "nKn2cwhGKHN";
 
 exports.COC_DEFAULT = "HllvX50cXC0";
 
@@ -51,9 +54,11 @@ exports.field1 = {de: exports.DE_Household_Visits, coc: exports.COC_DEFAULT}
 exports.field2 = {de: exports.DE_People_Examined, coc: exports.COC_DEFAULT}
 exports.field3 = {de: exports.DE_Suspected_Cases, coc: exports.COC_DEFAULT}
 
-exports.field4 = {de: exports.DE_MessageID, coc: exports.COC_DEFAULT}
-exports.field5 = {de: exports.DE_Message, coc: exports.COC_DEFAULT}
+exports.field6 = {de: exports.DE_MessageID, coc: exports.COC_DEFAULT}
+exports.field7 = {de: exports.DE_Message, coc: exports.COC_DEFAULT}
 
+exports.field4 = {de: exports.DE_FEVER_CASES, coc: exports.COC_DEFAULT}
+exports.field5 = {de: exports.DE_TESTS_DONE, coc: exports.COC_DEFAULT}
 
 
 exports.languageMap = {

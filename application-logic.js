@@ -143,19 +143,21 @@ function Engine(){
         var result = {
             field1	:	undefined,
             field2	:	undefined,
-            field3	:	undefined
+            field3	:	undefined, 
+            field4	:	undefined,
+            field5	:	undefined
         };
 
         message = message.replace(/[<>~`"'!@#$%^&*()_;:,.?=/+\{}\[\]\\-]+/g," ");
         message = message.toLowerCase().trim();
         message = message.replace(/\s+/g," ").trim();
 
-        var pattern = /^\s*\d+\s+\d+\s+\d+\s*$/;
+        var pattern = /^\s*\d+\s+\d+\s+\d+\s+\d+\s+\d+\s*$/;
 
         if (pattern.test(message)){
             var msg_parts = message.split(" ");
 
-            for (var i=0;i<3;i++) {
+            for (var i=0;i<5;i++) {
                 result["field"+(i+1)] = msg_parts[i];
             }
 
@@ -177,8 +179,11 @@ function Engine(){
         dv.dataValues.push(makeDVJson(CONSTANTS.field1.de,CONSTANTS.field1.coc,period,orgUnit,message["field1"],storedBy));
         dv.dataValues.push(makeDVJson(CONSTANTS.field2.de,CONSTANTS.field2.coc,period,orgUnit,message["field2"],storedBy));
         dv.dataValues.push(makeDVJson(CONSTANTS.field3.de,CONSTANTS.field3.coc,period,orgUnit,message["field3"],storedBy));
-        dv.dataValues.push(makeDVJson(CONSTANTS.field4.de,CONSTANTS.field4.coc,period,orgUnit,data.msgId+"-"+msgDate.format("YYYY-MM-DD HH:mm:ss Z"),storedBy));
-        dv.dataValues.push(makeDVJson(CONSTANTS.field5.de,CONSTANTS.field5.coc,period,orgUnit,data.content,storedBy));
+        dv.dataValues.push(makeDVJson(CONSTANTS.field4.de,CONSTANTS.field6.coc,period,orgUnit,message["field6"],storedBy));
+        dv.dataValues.push(makeDVJson(CONSTANTS.field5.de,CONSTANTS.field7.coc,period,orgUnit,message["field7"],storedBy));
+      
+        dv.dataValues.push(makeDVJson(CONSTANTS.field6.de,CONSTANTS.field4.coc,period,orgUnit,data.msgId+"-"+msgDate.format("YYYY-MM-DD HH:mm:ss Z"),storedBy));
+        dv.dataValues.push(makeDVJson(CONSTANTS.field7.de,CONSTANTS.field5.coc,period,orgUnit,data.content,storedBy));
 
 
         ajax.postReq(CONSTANTS.DHIS_URL_BASE+"/api/dataValueSets?",dv,CONSTANTS.auth,callback);
